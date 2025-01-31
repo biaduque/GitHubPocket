@@ -8,19 +8,22 @@
 import UIKit
 
 extension UIColor {
-    static var accent: UIColor {
+    static var accentColor: UIColor {
         UIColor(named: "AccentColor") ?? .systemBlue
     }
-    static var backgroundPrimary: UIColor {
+    static var background: UIColor {
         UIColor(named: "BackgroundPrimary") ?? .systemBackground
     }
-    static var textPrimary: UIColor {
+    static var primaryText: UIColor {
         UIColor(named: "Title") ?? .systemPink
     }
-    static var caption: UIColor {
+    static var calloutText: UIColor {
         UIColor(named: "Caption") ?? .systemGray
     }
-    static var backgroundCell: UIColor {
-        UIColor(named: "BackgroundCell") ?? .systemGray
+    static var bodyText: UIColor {
+        UIColor(named: "Body") ?? .systemGray
+    }
+    static var highlightText: UIColor {
+        UIColor(named: "Highlight") ?? .systemGray
     }
 }
