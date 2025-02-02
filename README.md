@@ -1,4 +1,4 @@
-# [🇧🇷] Processo seletivo LuizaLabs
+# [🇧🇷] GitHubPocket
 
 Neste projeto foi desenvolvido um aplicativo para consultar a [API do GitHub](https://docs.github.com/en/rest/search?apiVersion=2022-11-28#search-repositories "API do GitHub") e retornar os repositórios mais populares de Swift, mostrando sua lista de pull requests. O projeto foi desenvolvido visando as boas práticas de programação e os conceitos fundamentais de aplicativos nativos de iOS.
 
@@ -21,7 +21,7 @@ Para rodar o projeto, as seguintes instruções devem ser seguidas:
 2. Inst2
 3. Inst3
 
-# [🇺🇸] LuizaLabs recruitment process
+# [🇺🇸] GitHubPocket
 
 In this project, an application was developed to query the [GitHub API](https://docs.github.com/en/rest/search?apiVersion=2022-11-28#search-repositories "GitHub API") and return the most popular Swift repositories, showing their list of pull requests. The project was developed with a focus on best programming practices and the fundamental concepts of native iOS applications.
 
