@@ -26,15 +26,13 @@ class GitHubPocketCoordinator: Coordinator {
     /// InitialViewController
     /// **Home*
     func start() {
-        let viewController = HomeViewController()
-        viewController.setup(coordinator: self)
-        
+        let viewController = HomeViewFactory.makeController(with: self)
         navigationController.pushViewController(viewController, animated: true)
     }
     
     func startDetail() {
         let viewController = UIViewController()
-        
+        viewController.view.backgroundColor = .systemPink
         navigationController.pushViewController(viewController, animated: true)
     }
 }

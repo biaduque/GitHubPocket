@@ -10,24 +10,53 @@ import UIKit
 /// 🇺🇸 Screen Controller that displays the list of repositories collected from the GitHub API
 /// 🇧🇷 Controller da tela que apresenta a lista de repositórios coletados na API do GitHub
 class HomeViewController: UIViewController {
-    weak var coordinator: Coordinator?
+    //var coordinator: Coordinator?
+    var styleView: HomeView?
+    var router: HomeRoutingProtocol?
     
-    func setup(coordinator: GitHubPocketCoordinator) {
-        self.coordinator = coordinator
+    // MARK: LifeCycle
+    override func loadView() {
+        view = styleView
     }
     
     override func viewDidLoad() {
-        view.backgroundColor = .red
         super.viewDidLoad()
+        
+        setupController()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        view.backgroundColor = .red
+    init(view: HomeView) {
+        styleView = view
         
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        return nil
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {        
         super.viewWillAppear(true)
     }
     
-    func goToDetail() {
-        coordinator?.startDetail()
+    // MARK: Suport functions
+    func setup(router: HomeRoutingProtocol) {
+        self.router = router
+    }
+        
+    func setupController() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        styleView?.setup(delegate: self)
+    }
+    
+    // MARK: Router functions
+    func routeToDetail() {
+        router?.goToDetail()
+    }
+}
+
+extension HomeViewController: HomeViewDelegate {
+    func didSelectRepository() {
+        routeToDetail()
     }
 }
