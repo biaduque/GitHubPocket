@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 /// 🇺🇸 Screen Controller that displays the list of repositories collected from the GitHub API
 /// 🇧🇷 Controller da tela que apresenta a lista de repositórios coletados na API do GitHub
@@ -13,18 +14,12 @@ class HomeViewController: UIViewController {
     //var coordinator: Coordinator?
     var styleView: HomeView?
     var router: HomeRoutingProtocol?
+    var interactor: HomeBusinessLogic?
     
-    // MARK: LifeCycle
-    override func loadView() {
-        view = styleView
-    }
+    private let disposeBag = DisposeBag()
+    private var page: Int = 1
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupController()
-    }
-    
+    // MARK: Init
     init(view: HomeView) {
         styleView = view
         
@@ -35,7 +30,19 @@ class HomeViewController: UIViewController {
         return nil
     }
     
-    override func viewWillAppear(_ animated: Bool) {        
+    // MARK: LifeCycle
+    override func loadView() {
+        view = styleView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupController()
+        populateView(page: String(self.page))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
     }
     
@@ -43,12 +50,25 @@ class HomeViewController: UIViewController {
     func setup(router: HomeRoutingProtocol) {
         self.router = router
     }
-        
+    
+    func setup(interactor: HomeBusinessLogic) {
+        self.interactor = interactor
+    }
+    
     func setupController() {
         navigationController?.navigationBar.prefersLargeTitles = true
         styleView?.setup(delegate: self)
     }
     
+    // MARK: Interactor funcions
+    func populateView(page: String) {
+        interactor?.fetchRepoList({ [weak self] response in
+            self?.styleView?.setup(content: response?.repoItems ?? [],
+                                   count: response?.totalCount ?? 0,
+                                   response?.isLoading,
+                                   response?.isError)
+        },page: page)
+    }
     // MARK: Router functions
     func routeToDetail() {
         router?.goToDetail()

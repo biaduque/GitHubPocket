@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RepositoryCell: UITableViewCell {
+class RepositoryViewCell: UITableViewCell {
     static var identifier = "RepositoryCell"
     
     lazy var repoNameLabel: UILabel = {
@@ -27,9 +27,19 @@ class RepositoryCell: UITableViewCell {
         view.setupView()
         return view
     }()
+    
+    func setupContent(repoName: String, description: String) {
+        repoNameLabel.text = repoName
+        descriptionLabel.text = description
+    }
+    
+    func setupUserView(username: String, fullname: String) {
+        userView.username.text = "@\(username)"
+        userView.name.text = fullname
+    }
 }
 
-extension RepositoryCell: BaseViewProtocol {
+extension RepositoryViewCell: BaseViewProtocol {
     func setupView() {
         setupHierarchy()
         setupConstraints()

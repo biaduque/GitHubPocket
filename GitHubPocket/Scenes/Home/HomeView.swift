@@ -8,35 +8,59 @@
 import UIKit
 import SnapKit
 
+protocol HomeModel {
+    var isLoading: Bool { get set }
+    var isError: Bool { get set }
+    var repoItems: [RepositoryItem]? { get set }
+    var totalCount: Int { get set }
+}
+
+struct HomeViewModel: HomeModel {
+    var isLoading: Bool = true
+    var isError: Bool = false
+    var repoItems: [RepositoryItem]?
+    var totalCount: Int = 0
+}
+
 protocol HomeViewDelegate: AnyObject {
     func didSelectRepository()
 }
 
 class HomeView: UIView {
+    var homeViewModel: HomeViewModel
     weak var delegate: HomeViewDelegate?
     
     lazy var contentTableView: UITableView = {
         let table = UITableView()
-        table.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.identifier)
+        table.register(RepositoryViewCell.self, forCellReuseIdentifier: RepositoryViewCell.identifier)
         table.delegate = self
         table.dataSource = self
         table.rowHeight = 100
         return table
     }()
     
-    init() {
+    init(viewModel: HomeViewModel) {
+        self.homeViewModel = viewModel
         super.init(frame: .zero)
+        
         setupView()
     }
     
     required init?(coder: NSCoder) {
         return nil
     }
-    
-    
-    
+
     func setup(delegate: HomeViewDelegate) {
         self.delegate = delegate 
+    }
+    
+    func setup(content: [RepositoryItem], count: Int, _ isLoading: Bool?, _ isError: Bool?) {
+        homeViewModel.repoItems = content
+        homeViewModel.totalCount = count
+        homeViewModel.isLoading = isLoading ?? true
+        homeViewModel.isError = isError ?? true
+        
+        contentTableView.reloadData()
     }
 }
 
@@ -64,13 +88,20 @@ extension HomeView: BaseViewProtocol {
 
 extension HomeView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return homeViewModel.totalCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: RepositoryCell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.identifier, for: indexPath) as? RepositoryCell else { return UITableViewCell() } // lembrar de colocar empty view?
+        guard let cell: RepositoryViewCell = tableView.dequeueReusableCell(withIdentifier: RepositoryViewCell.identifier, for: indexPath) as? RepositoryViewCell else { return UITableViewCell() } // lembrar de colocar empty view?
         
-        cell.setupView()
+        guard let repoItems = homeViewModel.repoItems else { return UITableViewCell() }
+        if !repoItems.isEmpty {
+            let item = repoItems[indexPath.row]
+            cell.setupContent(repoName: item.name, description: item.description ?? "")
+            cell.setupUserView(username: item.owner.username, fullname: item.fullname)
+            cell.setupView()
+        }
+        
         return cell
     }
     
