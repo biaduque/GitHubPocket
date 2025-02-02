@@ -110,9 +110,9 @@
             filePath = "GitHubPocket/Scenes/Home/HomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "setup(content:count:_:_:)"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "setup(content:count:status:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

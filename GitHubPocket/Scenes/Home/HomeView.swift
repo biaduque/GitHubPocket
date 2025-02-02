@@ -8,22 +8,9 @@
 import UIKit
 import SnapKit
 
-protocol HomeModel {
-    var isLoading: Bool { get set }
-    var isError: Bool { get set }
-    var repoItems: [RepositoryItem]? { get set }
-    var totalCount: Int { get set }
-}
-
-struct HomeViewModel: HomeModel {
-    var isLoading: Bool = true
-    var isError: Bool = false
-    var repoItems: [RepositoryItem]?
-    var totalCount: Int = 0
-}
-
 protocol HomeViewDelegate: AnyObject {
     func didSelectRepository()
+    func showError()
 }
 
 class HomeView: UIView {
@@ -54,13 +41,22 @@ class HomeView: UIView {
         self.delegate = delegate 
     }
     
-    func setup(content: [RepositoryItem], count: Int, _ isLoading: Bool?, _ isError: Bool?) {
-        homeViewModel.repoItems = content
-        homeViewModel.totalCount = count
-        homeViewModel.isLoading = isLoading ?? true
-        homeViewModel.isError = isError ?? true
-        
+    func setup(content: [RepositoryItem], count: Int, status: ViewModelStatus) {
+        homeViewModel.status = status
+        switch status {
+        case .loading:
+            setupLoading()
+        case .error:
+            delegate?.showError()
+        case .success:
+            homeViewModel.repoItems = content
+            homeViewModel.totalCount = count
+        }
         contentTableView.reloadData()
+    }
+    
+    func setupLoading() {
+        
     }
 }
 
@@ -88,7 +84,7 @@ extension HomeView: BaseViewProtocol {
 
 extension HomeView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return homeViewModel.totalCount
+        return homeViewModel.repoItems?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
