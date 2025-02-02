@@ -1,4 +1,4 @@
-# <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="BR" height="20"/> Processo seletivo LuizaLabs
+# <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="BR" height="20"/> GitHubPocket
 
 Neste projeto foi desenvolvido um aplicativo para consultar a [API do GitHub](https://docs.github.com/en/rest/search?apiVersion=2022-11-28#search-repositories "API do GitHub") e retornar os repositórios mais populares de Swift, mostrando sua lista de pull requests. O projeto foi desenvolvido visando as boas práticas de programação e os conceitos fundamentais de aplicativos nativos de iOS.
 
@@ -21,7 +21,7 @@ Para rodar o projeto, as seguintes instruções devem ser seguidas:
 2. Abra o projeto do repositório via terminal
 3. Em seu terminal, rode o script ```sh rebuild_project.sh```
 
-# <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" height="16" /> LuizaLabs recruitment process
+# <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" height="16" /> GitHubPocket
 
 In this project, an application was developed to query the [GitHub API](https://docs.github.com/en/rest/search?apiVersion=2022-11-28#search-repositories "GitHub API") and return the most popular Swift repositories, showing their list of pull requests. The project was developed with a focus on best programming practices and the fundamental concepts of native iOS applications.
 
