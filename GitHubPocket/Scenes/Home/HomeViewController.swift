@@ -44,6 +44,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     // MARK: Suport functions
@@ -56,7 +57,6 @@ class HomeViewController: UIViewController {
     }
     
     func setupController() {
-        navigationController?.navigationBar.prefersLargeTitles = true
         styleView?.setup(delegate: self)
     }
     
@@ -65,18 +65,19 @@ class HomeViewController: UIViewController {
         interactor?.fetchRepoList({ [weak self] response in
             self?.styleView?.setup(content: response?.repoItems ?? [],
                                    count: response?.totalCount ?? 0,
-                                   response?.isLoading,
-                                   response?.isError)
+                                   status: response?.status ?? .loading)
         },page: page)
-    }
-    // MARK: Router functions
-    func routeToDetail() {
-        router?.goToDetail()
     }
 }
 
 extension HomeViewController: HomeViewDelegate {
-    func didSelectRepository() {
-        routeToDetail()
+    func didSelectRepository(creatorName: String, repoName: String) {
+        
+        router?.goToDetail(from: RepoDetailRequest(creatorName: creatorName,
+                                                   repoName: repoName))
+    }
+    
+    func showError() {
+        //
     }
 }

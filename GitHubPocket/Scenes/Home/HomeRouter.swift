@@ -6,7 +6,7 @@
 //
 
 protocol HomeRoutingProtocol: AnyObject {
-    func goToDetail()
+    func goToDetail(from repository: RepoDetailRequest)
 }
 
 class HomeRouter: HomeRoutingProtocol {
@@ -16,7 +16,7 @@ class HomeRouter: HomeRoutingProtocol {
         self.coordinator = coordinator
     }
     
-    func goToDetail() {
-        coordinator?.startDetail()
+    func goToDetail(from repository: RepoDetailRequest) {
+        coordinator?.startDetail(with: repository)
     }
 }

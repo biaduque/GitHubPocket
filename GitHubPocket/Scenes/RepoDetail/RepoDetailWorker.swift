@@ -1,24 +1,24 @@
 //
-//  HomeWorker.swift
+//  RepoDetailWorker.swift
 //  GitHubPocket
 //
-//  Created by Beatriz Duque on 30/01/25.
+//  Created by Beatriz Duque on 02/02/25.
 //
 
 import RxSwift
 
 /// **HomeWorker**
 /// Responsável por realizar o GET da url da lista de reposiórios de acordo com a url passada
-protocol HomeWorkingProtocol: AnyObject {
-    func getRepoList(page: String) -> Observable<RepositoriesList>
+protocol RepoDetailWorkingProtocol: AnyObject {
+    func getRepoList(with request: RepoDetailRequest) -> Observable<[RepoDetailList]>
 }
 
-class HomeWorker: HomeWorkingProtocol {
+class RepoDetailWorker: RepoDetailWorkingProtocol {
 
     let session: URLSession = URLSession.shared
     
-    func getRepoList(page: String) -> Observable<RepositoriesList> {
-        guard let url = RepositoriesRequest.bindUrl(page: page) else {
+    func getRepoList(with request: RepoDetailRequest) -> Observable<[RepoDetailList]> {
+        guard let url = RepoDetailRequest.bindUrl(infos: request) else {
             return Observable.error(NSError(domain: "Invalid URL", code: -1, userInfo: nil))
         }
         
@@ -36,7 +36,7 @@ class HomeWorker: HomeWorkingProtocol {
                 }
                 
                 do {
-                    let response = try JSONDecoder().decode(RepositoriesList.self, from: data)
+                    let response = try JSONDecoder().decode([RepoDetailList].self, from: data)
                     observer.onNext(response)
                     observer.onCompleted()
                     
@@ -52,6 +52,6 @@ class HomeWorker: HomeWorkingProtocol {
             }
         }
         .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
-        .observe(on: MainScheduler.instance) 
+        .observe(on: MainScheduler.instance)
     }
 }
