@@ -7,8 +7,8 @@
 
 import UIKit
 
-class HomeViewFactory: FactoryProtocol {
-    static func makeController(with coordinator: GitHubPocketCoordinator) -> UIViewController {
+class HomeFactory: FactoryProtocol {
+    static func makeController(with coordinator: GitHubPocketCoordinator, aditionalInfos: Any?) -> UIViewController {
         let viewController = HomeViewController(view: HomeView(viewModel: HomeViewModel()))
         viewController.title = "GitHub Pocket"
 

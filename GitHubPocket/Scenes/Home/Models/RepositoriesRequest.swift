@@ -9,9 +9,8 @@ import UIKit
 
 class RepositoriesRequest {
     static func bindUrl(page: String) -> URL? {
-        let urlString = "https://api.github.com/search/repositories?q=language:Swift&sort=stars"
-       
-        let urlPage = "\(urlString)&page=\(page)"
-        return URL(string: urlPage)
+        let urlString = "https://api.github.com/search/repositories?q=language:Swift&sort=stars&page=\(page)"
+        
+        return URL(string: urlString)
     }
 }

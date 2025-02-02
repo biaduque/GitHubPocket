@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol HomeViewDelegate: AnyObject {
-    func didSelectRepository()
+    func didSelectRepository(creatorName: String, repoName: String)
     func showError()
 }
 
@@ -51,11 +51,17 @@ class HomeView: UIView {
         case .success:
             homeViewModel.repoItems = content
             homeViewModel.totalCount = count
+        case .empty:
+            setupEmpty() 
         }
         contentTableView.reloadData()
     }
     
     func setupLoading() {
+        
+    }
+    
+    func setupEmpty() {
         
     }
 }
@@ -102,7 +108,9 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didSelectRepository()
+        guard let repoItems = homeViewModel.repoItems else { return }
+        delegate?.didSelectRepository(creatorName: repoItems[indexPath.row].owner.username,
+                                      repoName: repoItems[indexPath.row].name)
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

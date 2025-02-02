@@ -10,7 +10,7 @@ class DSLabel {
     static var titleStyle: UILabel {
         let label = UILabel()
         label.textColor = UIColor.title
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         label.numberOfLines = 0
         return label
     }

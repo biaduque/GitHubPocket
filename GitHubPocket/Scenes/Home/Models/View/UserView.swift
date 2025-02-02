@@ -52,19 +52,19 @@ class UserView: UIView {
 }
 
 extension UserView: BaseViewProtocol {
-    func setupView() {
+    @objc func setupView() {
         setupHierarchy()
         setupConstraints()
     }
     
-    func setupHierarchy() {
+    @objc func setupHierarchy() {
         addSubview(stackView)
         stackView.addArrangedSubview(userImage)
         stackView.addArrangedSubview(username)
         stackView.addArrangedSubview(name)
     }
     
-    func setupConstraints() {
+    @objc func setupConstraints() {
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -81,7 +81,7 @@ extension UserView: BaseViewProtocol {
         }
     }
     
-    func aditionalSetups() {
+    @objc func aditionalSetups() {
         
     }
 }

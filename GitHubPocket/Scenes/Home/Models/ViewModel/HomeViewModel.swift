@@ -15,6 +15,7 @@ enum ViewModelStatus {
     case loading
     case error
     case success
+    case empty
 }
 
 struct HomeViewModel: HomeModel {

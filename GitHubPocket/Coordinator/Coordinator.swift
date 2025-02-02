@@ -13,7 +13,8 @@ import UIKit
 protocol Coordinator: AnyObject {
     var navigationController: UINavigationController { get set }
     func start()
-    func startDetail()
+    func startDetail(with request: RepoDetailRequest)
+    func back()
 }
 
 class GitHubPocketCoordinator: Coordinator {
@@ -25,14 +26,23 @@ class GitHubPocketCoordinator: Coordinator {
     
     /// InitialViewController
     /// **Home*
+    /// Controller que exibe uma lista de repositórios
     func start() {
-        let viewController = HomeViewFactory.makeController(with: self)
+        let viewController = HomeFactory.makeController(with: self,
+                                                        aditionalInfos: nil)
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func startDetail() {
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .systemPink
+    ///
+    /// **RepoDetailViewController*
+    /// Controller que exibe a lista de pull requests dado um repositório selecionado
+    func startDetail(with request: RepoDetailRequest) {
+        let viewController = RepoDetailFactory.makeController(with: self,
+                                                              aditionalInfos: request)
         navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func back() {
+        navigationController.popViewController(animated: true)
     }
 }

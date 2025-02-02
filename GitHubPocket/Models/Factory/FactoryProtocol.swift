@@ -7,5 +7,5 @@
 import UIKit
 
 protocol FactoryProtocol: AnyObject {
-    static func makeController(with coordinator: GitHubPocketCoordinator) -> UIViewController
+    static func makeController(with coordinator: GitHubPocketCoordinator, aditionalInfos: Any?) -> UIViewController
 }
