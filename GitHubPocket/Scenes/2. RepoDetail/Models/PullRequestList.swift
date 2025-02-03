@@ -25,6 +25,6 @@ struct User: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case login
-        case avatarUrl = "html_url"
+        case avatarUrl = "avatar_url"
     }
 }

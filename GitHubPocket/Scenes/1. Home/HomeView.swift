@@ -10,7 +10,6 @@ import SnapKit
 
 protocol HomeViewDelegate: AnyObject {
     func didSelectRepository(creatorName: String, repoName: String)
-    func showError()
 }
 
 class HomeView: UIView {
@@ -23,7 +22,22 @@ class HomeView: UIView {
         table.delegate = self
         table.dataSource = self
         table.rowHeight = 100
+        table.backgroundColor = .clear
         return table
+    }()
+    
+    lazy var emptyView: EmptyListView = {
+        let view = EmptyListView()
+        view.backButton.isHidden = true
+        view.isHidden = true
+        return view
+    }()
+    
+    lazy var loadingView: LoadingView = {
+        let loading = LoadingView()
+        loading.isHidden = false
+        loading.start()
+        return loading
     }()
     
     init(viewModel: HomeViewModel) {
@@ -46,12 +60,23 @@ class HomeView: UIView {
         contentTableView.reloadData()
     }
     
+    func updateContent() {
+        contentTableView.reloadData()
+        loadingView.stop()
+        emptyView.hide()
+    }
     func setupLoading() {
-        
+        loadingView.start()
     }
     
     func setupEmpty() {
-        
+        emptyView.setEmpty(cause: .emptyList)
+        loadingView.stop()
+    }
+    
+    func setupError() {
+        emptyView.setEmpty(cause: .apiError)
+        loadingView.stop()
     }
 }
 
@@ -64,11 +89,23 @@ extension HomeView: BaseViewProtocol {
     
     func setupHierarchy() {
         addSubview(contentTableView)
+        addSubview(loadingView)
+        addSubview(emptyView)
     }
     
     func setupConstraints() {
         contentTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        loadingView.snp.makeConstraints { make in
+            make.centerX.centerY.width.equalToSuperview()
+            make.height.equalTo(300)
+        }
+        
+        emptyView.snp.makeConstraints { make in
+            make.centerX.centerY.width.equalToSuperview()
+            make.height.equalTo(300)
         }
     }
     
@@ -83,13 +120,14 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: RepositoryViewCell = tableView.dequeueReusableCell(withIdentifier: RepositoryViewCell.identifier, for: indexPath) as? RepositoryViewCell else { return UITableViewCell() } // lembrar de colocar empty view?
+        guard let cell: RepositoryViewCell = tableView.dequeueReusableCell(withIdentifier: RepositoryViewCell.identifier, for: indexPath) as? RepositoryViewCell else { return UITableViewCell() }
         
         guard let repoItems = homeViewModel.repoItems else { return UITableViewCell() }
         if !repoItems.isEmpty {
             let item = repoItems[indexPath.row]
             cell.setupContent(repoName: item.name, description: item.description ?? "")
             cell.setupUserView(username: item.owner.username, fullname: item.fullname)
+            cell.userView.setupUserImage(url: item.owner.avatarUrl)
             cell.setupView()
         }
         

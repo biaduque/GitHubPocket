@@ -7,6 +7,7 @@
  
 import UIKit
 import SnapKit
+import Kingfisher
 
 class UserView: UIView {
     
@@ -23,7 +24,8 @@ class UserView: UIView {
         let image = UIImageView()
         image.image = UIImage(named: "empty-user-image")
         image.layer.cornerRadius = 20
-        image.contentMode = .scaleAspectFit
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFill
         image.backgroundColor = UIColor.emptyState
         return image
     }()
@@ -48,6 +50,14 @@ class UserView: UIView {
     
     required init?(coder: NSCoder) {
         return nil
+    }
+    
+    func setupUserImage(url: String) {
+        let url = URL(string: url)
+        userImage.kf.setImage(with: url,
+                              placeholder: UIImage(named: "empty-user-image"))
+        
+        reloadInputViews()
     }
 }
 

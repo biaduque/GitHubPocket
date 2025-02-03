@@ -14,8 +14,8 @@ protocol HomeWorkingProtocol: AnyObject {
 }
 
 class HomeWorker: HomeWorkingProtocol {
-
     let session: URLSession = URLSession.shared
+    let imageCache = NSCache<NSNumber, UIImage>()
     
     func getRepoList(page: String) -> Observable<RepositoriesList> {
         guard let url = RepositoriesRequest.bindUrl(page: page) else {
