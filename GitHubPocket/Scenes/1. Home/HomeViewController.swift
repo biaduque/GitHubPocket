@@ -16,7 +16,6 @@ class HomeViewController: UIViewController {
     var router: HomeRoutingProtocol?
     var interactor: HomeBusinessLogic?
     
-    private let disposeBag = DisposeBag()
     private var page: Int = 1
     
     // MARK: Init
@@ -39,7 +38,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         setupController()
-        interactor?.fetchRepoList(page: String(self.page))
+        interactor?.fetchRepoList(page: String(page))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,8 +86,12 @@ extension HomeViewController: ContentControllerProtocol {
 // MARK: Extensions
 extension HomeViewController: HomeViewDelegate {
     func didSelectRepository(creatorName: String, repoName: String) {
-        
         router?.goToDetail(from: RepoDetailRequest(creatorName: creatorName,
                                                    repoName: repoName))
+    }
+    
+    func didRequestedNextPage() {
+        page+=1
+        interactor?.fetchRepoList(page: String(page))
     }
 }

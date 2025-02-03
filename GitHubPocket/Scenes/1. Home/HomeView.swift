@@ -10,6 +10,7 @@ import SnapKit
 
 protocol HomeViewDelegate: AnyObject {
     func didSelectRepository(creatorName: String, repoName: String)
+    func didRequestedNextPage()
 }
 
 class HomeView: UIView {
@@ -56,7 +57,12 @@ class HomeView: UIView {
     }
     
     func setup(content: [RepositoryItem]) {
-        homeViewModel.repoItems = content
+        guard var contentList = homeViewModel.repoItems else {
+            homeViewModel.repoItems = content
+            return
+        }
+        contentList += content
+        homeViewModel.repoItems = contentList
     }
 }
 
@@ -134,7 +140,6 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
             cell.userView.setupUserImage(url: item.owner.avatarUrl)
             cell.setupView()
         }
-        
         return cell
     }
     
@@ -151,5 +156,13 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let repoItems = homeViewModel.repoItems else { return }
+        
+        if indexPath.row == repoItems.count - 2 {
+            delegate?.didRequestedNextPage()
+        }
     }
 }
