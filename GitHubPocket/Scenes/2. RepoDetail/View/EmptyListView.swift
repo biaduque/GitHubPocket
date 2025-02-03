@@ -7,7 +7,32 @@
 import UIKit
 import SnapKit
 
+enum EmptyCause {
+    case emptyList
+    case apiError
+    
+    func message() -> String {
+        switch self {
+        case .emptyList:
+            return "Oh, it looks like there is no pull request list for this repository.How about looking for another one?"
+        case .apiError:
+            return "Oh, something went wrong. Try again later."
+        }
+    }
+    
+    func image() -> String {
+        switch self {
+        case .emptyList:
+            return "empty-list"
+        case .apiError:
+            return "empty-error"
+        }
+    }
+}
+
 class EmptyListView: UIView {
+    var emptyCause: EmptyCause = .emptyList
+    
     lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -29,7 +54,6 @@ class EmptyListView: UIView {
         label.textColor = UIColor.caption
         label.numberOfLines = 4
         label.textAlignment = .center
-        label.text = "Oh, it looks like there is no pull request list for this repository.How about looking for another one?"
         return label
     }()
     
@@ -49,6 +73,13 @@ class EmptyListView: UIView {
     
     required init?(coder: NSCoder) {
         return nil
+    }
+    
+    func setEmpty(cause: EmptyCause) {
+        image.image = UIImage(named: cause.image())
+        message.text = cause.message()
+        
+        reloadInputViews()
     }
 }
 
@@ -80,7 +111,7 @@ extension EmptyListView: BaseViewProtocol {
         }
         
         backButton.snp.makeConstraints { make in
-            make.height.equalTo(30)
+            make.height.equalTo(45)
             make.width.equalTo(image)
         }
     }

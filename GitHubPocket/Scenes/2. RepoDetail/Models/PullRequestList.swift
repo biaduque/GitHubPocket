@@ -9,6 +9,14 @@ struct RepoDetailList: Decodable {
     var title: String
     var body: String?
     var user: User
+    var htmlUrl: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case body
+        case user
+        case htmlUrl = "html_url"
+    }
 }
 
 struct User: Decodable {

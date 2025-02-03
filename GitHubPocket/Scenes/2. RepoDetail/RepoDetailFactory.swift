@@ -18,12 +18,14 @@ class RepoDetailFactory: FactoryProtocol {
 
         let router = RepoDetailRouter()
         let interactor = RepoDetailInteractor()
+        let presenter = RepoDetailPresenter()
         
-        interactor.setup(worker: RepoDetailWorker())
+        interactor.setup(worker: RepoDetailWorker(), presenter: presenter)
         router.setup(coordinator: coordinator)
         
         viewController.setup(router: router)
         viewController.setup(interactor: interactor)
+        presenter.setup(controller: viewController)
         return viewController
     }
 

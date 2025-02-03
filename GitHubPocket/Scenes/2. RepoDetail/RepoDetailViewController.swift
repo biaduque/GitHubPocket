@@ -75,8 +75,8 @@ extension RepoDetailViewController: RepoDetailViewDelegate {
         router?.routeBackToList()
     }
     
-    func didSelectPullRequest() {
-        //
+    func didSelectPullRequest(url: String) {
+        interactor?.calledPullRequestDetail(url: url)
     }
     
     func showError() {

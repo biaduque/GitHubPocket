@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RepoDetailViewDelegate: AnyObject {
-    func didSelectPullRequest()
+    func didSelectPullRequest(url: String)
     func showError()
     func backToList()
 }
@@ -31,6 +31,13 @@ class RepoDetailView: UIView {
         view.backButton.addTarget(self, action: #selector(didSelectBack), for: .touchUpInside)
         view.isHidden = true
         return view
+    }()
+    
+    lazy var loadingView: LoadingView = {
+        let loading = LoadingView()
+        loading.isHidden = false
+        loading.start()
+        return loading
     }()
     
     init(viewModel: RepoDetailModel) {
@@ -58,21 +65,26 @@ class RepoDetailView: UIView {
         case .success:
             repoDetailModel.pullRequestList = content
             contentTableView.reloadData()
+            self.loadingView.stop()
         case .empty:
             showEmpty()
         }
     }
     
     func setupLoading() {
-        
+        loadingView.start()
     }
     
     func showError() {
-        
+        emptyView.isHidden = false
+        emptyView.setEmpty(cause: .apiError)
+        self.loadingView.stop()
     }
     
     func showEmpty() {
         emptyView.isHidden = false
+        emptyView.setEmpty(cause: .emptyList)
+        self.loadingView.stop()
     }
     
     @objc func didSelectBack() {
@@ -89,12 +101,18 @@ extension RepoDetailView: BaseViewProtocol {
     
     func setupHierarchy() {
         addSubview(contentTableView)
+        addSubview(loadingView)
         addSubview(emptyView)
     }
     
     func setupConstraints() {
         contentTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        loadingView.snp.makeConstraints { make in
+            make.centerX.centerY.width.equalToSuperview()
+            make.height.equalTo(500)
         }
         
         emptyView.snp.makeConstraints { make in
@@ -132,15 +150,9 @@ extension RepoDetailView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didSelectPullRequest()
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = FooterView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
-        return footerView
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 50
+        guard let repoItems = repoDetailModel.pullRequestList else { return }
+        let item = repoItems[indexPath.row]
+        
+        delegate?.didSelectPullRequest(url: item.htmlUrl ?? "")
     }
 }
