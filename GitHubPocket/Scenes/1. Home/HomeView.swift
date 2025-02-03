@@ -41,19 +41,8 @@ class HomeView: UIView {
         self.delegate = delegate 
     }
     
-    func setup(content: [RepositoryItem], count: Int, status: ViewModelStatus) {
-        homeViewModel.status = status
-        switch status {
-        case .loading:
-            setupLoading()
-        case .error:
-            delegate?.showError()
-        case .success:
-            homeViewModel.repoItems = content
-            homeViewModel.totalCount = count
-        case .empty:
-            setupEmpty() 
-        }
+    func setup(content: [RepositoryItem]) {
+       homeViewModel.repoItems = content
         contentTableView.reloadData()
     }
     

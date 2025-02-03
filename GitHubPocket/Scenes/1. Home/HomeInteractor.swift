@@ -16,20 +16,22 @@ import UIKit
 ///
 
 protocol HomeBusinessLogic {
-    func fetchRepoList(_ completion: @escaping ((_ repositoriesList: HomeViewModel?)->Void), page: String)
+    func fetchRepoList(page: String)
 }
 
 class HomeInteractor: HomeBusinessLogic {
-    var worker: HomeWorkingProtocol?
     private let disposeBag = DisposeBag()
-    
+
+    var worker: HomeWorkingProtocol?
+    var presenter: HomePresentationLogic?
     var responseModel: HomeViewModel = HomeViewModel()
     
-    func setup(worker: HomeWorkingProtocol) {
+    func setup(worker: HomeWorkingProtocol, presenter: HomePresentationLogic) {
         self.worker = worker
+        self.presenter = presenter
     }
 
-    func fetchRepoList(_ completion: @escaping ((_ repositoriesList: HomeViewModel?)->Void), page: String) {
+    func fetchRepoList(page: String) {
         worker?.getRepoList(page: page)
             .subscribe(
                 onNext: { [weak self] repoListResponse in
@@ -37,18 +39,18 @@ class HomeInteractor: HomeBusinessLogic {
                     self.responseModel.repoItems = repoListResponse.items
                     self.responseModel.totalCount = repoListResponse.totalCount
                     self.responseModel.status = .success
+                    presenter?.presentRepoList()
                     
-                    completion(self.responseModel)
                 },
                 onError: { [weak self] error in
                     guard let self = self else { return }
                     self.responseModel.totalCount = 0
                     self.responseModel.status = .error
                     
-                    completion(self.responseModel)
+                    
                 },
                 onCompleted: {
-                    completion(self.responseModel)
+                    
                 }
             )
             .disposed(by: disposeBag)

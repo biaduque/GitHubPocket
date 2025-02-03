@@ -63,11 +63,41 @@ class HomeViewController: UIViewController {
     // MARK: Interactor funcions
     func populateView(page: String) {
         interactor?.fetchRepoList({ [weak self] response in
-            self?.styleView?.setup(content: response?.repoItems ?? [],
-                                   count: response?.totalCount ?? 0,
-                                   status: response?.status ?? .loading)
+            guard let response else { return }
+            switch response.status {
+            case .loading:
+                <#code#>
+            case .error:
+                <#code#>
+            case .success:
+                <#code#>
+            case .empty:
+                <#code#>
+            }
+            
         },page: page)
     }
+}
+
+extension HomeViewController {
+    func setupContent(with list: [RepositoryItem]) {
+        self.styleView?.setup(content: list,
+                               count: 0,
+                              status: response.)
+    }
+    
+    func setupEmpty() {
+        
+    }
+    
+    func setupLoading() {
+        
+    }
+    
+    func setupError() {
+        
+    }
+    
 }
 
 extension HomeViewController: HomeViewDelegate {

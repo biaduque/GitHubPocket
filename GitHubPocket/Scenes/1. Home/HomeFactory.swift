@@ -14,12 +14,16 @@ class HomeFactory: FactoryProtocol {
 
         let router = HomeRouter()
         let interactor = HomeInteractor()
-        
-        interactor.setup(worker: HomeWorker())
-        router.setup(coordinator: coordinator)
+        let presenter = HomePresenter()
+        let worker = HomeWorker()
         
         viewController.setup(router: router)
         viewController.setup(interactor: interactor)
+        
+        router.setup(coordinator: coordinator)
+        presenter.setup(controller: viewController)
+        interactor.setup(worker: worker, presenter: presenter)
+        
         return viewController
     }
 }
