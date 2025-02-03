@@ -7,6 +7,11 @@
 
 protocol RepoDetailPresentationLogic {
     func presentDetailModal(url: String)
+    func presentEmptyView()
+    func presentError()
+    func presentPullsList(content: [RepoDetailList])
+    func presentLoading()
+    func updateView()
 }
 
 class RepoDetailPresenter: RepoDetailPresentationLogic {
@@ -20,4 +25,25 @@ class RepoDetailPresenter: RepoDetailPresentationLogic {
         let modalController = PullRequestDetailFactory.makeController(with: url)
         controller?.present(modalController, animated: true)
     }
+    
+    func presentEmptyView() {
+        controller?.setupEmpty()
+    }
+    
+    func presentError() {
+        controller?.setupError()
+    }
+    
+    func presentPullsList(content: [RepoDetailList]) {
+        controller?.presentPullsList(content: content)
+    }
+    
+    func presentLoading() {
+        controller?.setupLoading()
+    }
+    
+    func updateView() {
+        controller?.updateView()
+    }
+    
 }

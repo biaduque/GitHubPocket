@@ -58,7 +58,9 @@ class HomeView: UIView {
     func setup(content: [RepositoryItem]) {
         homeViewModel.repoItems = content
     }
-    
+}
+
+extension HomeView: ViewModelStatusChanges {
     func updateContent() {
         contentTableView.reloadData()
         loadingView.stop()

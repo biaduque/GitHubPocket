@@ -63,10 +63,29 @@ class RepoDetailViewController: UIViewController {
     
     // MARK: Interactor funcions
     func populateView(request: RepoDetailRequest) {
-        interactor?.fetchPullRequestList({ [weak self] response in
-            self?.styleView?.setup(content: response.pullRequestList ?? [],
-                                   status: response.status)
-        },request: detailRequest)
+        interactor?.fetchPullRequestList(request: detailRequest)
+    }
+}
+
+extension RepoDetailViewController: ContentControllerProtocol {
+    func presentPullsList(content: [RepoDetailList]) {
+        styleView?.setup(content: content)
+    }
+    
+    func setupEmpty() {
+        styleView?.setupEmpty()
+    }
+    
+    func setupLoading() {
+        styleView?.setupLoading()
+    }
+    
+    func setupError() {
+        styleView?.setupError()
+    }
+    
+    func updateView() {
+        styleView?.updateContent()
     }
 }
 
@@ -77,9 +96,5 @@ extension RepoDetailViewController: RepoDetailViewDelegate {
     
     func didSelectPullRequest(url: String) {
         interactor?.calledPullRequestDetail(url: url)
-    }
-    
-    func showError() {
-        //
     }
 }

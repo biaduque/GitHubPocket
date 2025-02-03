@@ -9,7 +9,6 @@ import UIKit
 
 protocol RepoDetailViewDelegate: AnyObject {
     func didSelectPullRequest(url: String)
-    func showError()
     func backToList()
 }
 
@@ -55,22 +54,16 @@ class RepoDetailView: UIView {
         self.delegate = delegate
     }
     
-    func setup(content: [RepoDetailList], status: ViewModelStatus) {
-        repoDetailModel.status = status
-        repoDetailModel.pullRequestList = content
-        
-        switch status {
-        case .loading:
-            setupLoading()
-        case .error:
-            showError()
-        case .success:
-            updateContent()
-        case .empty:
-            showEmpty()
-        }
+    func setup(content: [RepoDetailList]) {
+        repoDetailModel.pullRequestList = content       
     }
     
+    @objc func didSelectBack() {
+        delegate?.backToList()
+    }
+}
+
+extension RepoDetailView: ViewModelStatusChanges {
     func updateContent() {
         contentTableView.reloadData()
         emptyView.hide()
@@ -81,20 +74,16 @@ class RepoDetailView: UIView {
         loadingView.start()
     }
     
-    func showError() {
-        emptyView.isHidden = false
-        emptyView.setEmpty(cause: .apiError)
-        self.loadingView.stop()
-    }
-    
-    func showEmpty() {
+    func setupEmpty() {
         emptyView.isHidden = false
         emptyView.setEmpty(cause: .emptyList)
         self.loadingView.stop()
     }
     
-    @objc func didSelectBack() {
-        delegate?.backToList()
+    func setupError() {
+        emptyView.isHidden = false
+        emptyView.setEmpty(cause: .apiError)
+        self.loadingView.stop()
     }
 }
 
