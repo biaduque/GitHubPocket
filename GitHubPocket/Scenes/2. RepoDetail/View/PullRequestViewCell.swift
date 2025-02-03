@@ -51,6 +51,7 @@ class PullRequestViewCell: UITableViewCell {
     func formatDescription(with receivedDescription: String) {
         descriptionLabel.text = receivedDescription
         descriptionLabel.attributedText = receivedDescription.formatMarkdown()
+        descriptionLabel.textColor = UIColor.body
     }
 }
 

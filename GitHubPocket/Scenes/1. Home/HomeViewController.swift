@@ -39,7 +39,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         setupController()
-        populateView(page: String(self.page))
+        interactor?.fetchRepoList(page: String(self.page))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,17 +59,32 @@ class HomeViewController: UIViewController {
     func setupController() {
         styleView?.setup(delegate: self)
     }
+}
+
+// MARK: Presenter functions
+extension HomeViewController: ContentControllerProtocol {
+    func setupContent(with list: [RepositoryItem]) {
+        styleView?.setup(content: list)
+    }
     
-    // MARK: Interactor funcions
-    func populateView(page: String) {
-        interactor?.fetchRepoList({ [weak self] response in
-            self?.styleView?.setup(content: response?.repoItems ?? [],
-                                   count: response?.totalCount ?? 0,
-                                   status: response?.status ?? .loading)
-        },page: page)
+    func setupEmpty() {
+        styleView?.setupEmpty()
+    }
+    
+    func setupLoading() {
+        styleView?.setupLoading()
+    }
+    
+    func setupError() {
+        styleView?.setupError()
+    }
+    
+    func updateView() {
+        styleView?.updateContent()
     }
 }
 
+// MARK: Extensions
 extension HomeViewController: HomeViewDelegate {
     func didSelectRepository(creatorName: String, repoName: String) {
         

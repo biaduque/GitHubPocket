@@ -8,7 +8,7 @@
 import RxSwift
 
 protocol RepoDetailBusinessLogic {
-    func fetchPullRequestList(_ completion: @escaping ((_ repositoriesList: RepoDetailViewModel)->Void), request: RepoDetailRequest)
+    func fetchPullRequestList(request: RepoDetailRequest)
     func calledPullRequestDetail(url: String)
 }
 
@@ -17,35 +17,30 @@ class RepoDetailInteractor: RepoDetailBusinessLogic {
     var presenter: RepoDetailPresentationLogic?
     private let disposeBag = DisposeBag()
     
-    var responseModel: RepoDetailViewModel = RepoDetailViewModel()
-    
     func setup(worker: RepoDetailWorkingProtocol, presenter: RepoDetailPresentationLogic) {
         self.worker = worker
         self.presenter = presenter
     }
 
-    func fetchPullRequestList(_ completion: @escaping ((_ repositoriesList: RepoDetailViewModel)->Void), request: RepoDetailRequest) {
+    func fetchPullRequestList(request: RepoDetailRequest) {
         worker?.getRepoList(with: request)
             .subscribe(
                 onNext: { [weak self] pullListResponse in
                     guard let self = self else { return }
-                    self.responseModel.pullRequestList = pullListResponse
-                    self.responseModel.status = .success
                     
                     if pullListResponse.isEmpty {
-                        self.responseModel.status = .empty
+                        presenter?.presentEmptyView()
                     }
                     
-                    completion(self.responseModel)
+                    presenter?.presentPullsList(content: pullListResponse)
                 },
                 onError: { [weak self] error in
                     guard let self = self else { return }
-                    self.responseModel.status = .error
                     
-                    completion(self.responseModel)
+                    presenter?.presentError()
                 },
                 onCompleted: {
-                    completion(self.responseModel)
+                    self.presenter?.updateView()
                 }
             )
             .disposed(by: disposeBag)
