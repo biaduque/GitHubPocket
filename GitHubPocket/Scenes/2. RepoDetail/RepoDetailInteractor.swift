@@ -9,16 +9,19 @@ import RxSwift
 
 protocol RepoDetailBusinessLogic {
     func fetchPullRequestList(_ completion: @escaping ((_ repositoriesList: RepoDetailViewModel)->Void), request: RepoDetailRequest)
+    func calledPullRequestDetail(url: String)
 }
 
 class RepoDetailInteractor: RepoDetailBusinessLogic {
     var worker: RepoDetailWorkingProtocol?
+    var presenter: RepoDetailPresentationLogic?
     private let disposeBag = DisposeBag()
     
     var responseModel: RepoDetailViewModel = RepoDetailViewModel()
     
-    func setup(worker: RepoDetailWorkingProtocol) {
+    func setup(worker: RepoDetailWorkingProtocol, presenter: RepoDetailPresentationLogic) {
         self.worker = worker
+        self.presenter = presenter
     }
 
     func fetchPullRequestList(_ completion: @escaping ((_ repositoriesList: RepoDetailViewModel)->Void), request: RepoDetailRequest) {
@@ -46,5 +49,9 @@ class RepoDetailInteractor: RepoDetailBusinessLogic {
                 }
             )
             .disposed(by: disposeBag)
+    }
+    
+    func calledPullRequestDetail(url: String) {
+        presenter?.presentDetailModal(url: url)
     }
 }
