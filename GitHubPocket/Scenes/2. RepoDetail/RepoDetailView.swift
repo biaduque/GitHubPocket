@@ -57,18 +57,24 @@ class RepoDetailView: UIView {
     
     func setup(content: [RepoDetailList], status: ViewModelStatus) {
         repoDetailModel.status = status
+        repoDetailModel.pullRequestList = content
+        
         switch status {
         case .loading:
             setupLoading()
         case .error:
             showError()
         case .success:
-            repoDetailModel.pullRequestList = content
-            contentTableView.reloadData()
-            self.loadingView.stop()
+            updateContent()
         case .empty:
             showEmpty()
         }
+    }
+    
+    func updateContent() {
+        contentTableView.reloadData()
+        emptyView.hide()
+        loadingView.stop()
     }
     
     func setupLoading() {
@@ -134,7 +140,7 @@ extension RepoDetailView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: PullRequestViewCell = tableView.dequeueReusableCell(withIdentifier: PullRequestViewCell.identifier, for: indexPath) as? PullRequestViewCell else { return UITableViewCell() } // lembrar de colocar empty view?
+        guard let cell: PullRequestViewCell = tableView.dequeueReusableCell(withIdentifier: PullRequestViewCell.identifier, for: indexPath) as? PullRequestViewCell else { return UITableViewCell() }
         
         guard let repoItems = repoDetailModel.pullRequestList else { return UITableViewCell() }
         if !repoItems.isEmpty {
@@ -143,6 +149,7 @@ extension RepoDetailView: UITableViewDelegate, UITableViewDataSource {
                               description: item.body ?? "No description provided")
             cell.setupUserView(username: item.user.login,
                                fullname: item.user.login)
+            cell.userView.setupUserImage(url: item.user.avatarUrl)
             cell.setupView()
         }
         

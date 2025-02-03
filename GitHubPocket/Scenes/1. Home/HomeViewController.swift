@@ -76,8 +76,4 @@ extension HomeViewController: HomeViewDelegate {
         router?.goToDetail(from: RepoDetailRequest(creatorName: creatorName,
                                                    repoName: repoName))
     }
-    
-    func showError() {
-        //
-    }
 }

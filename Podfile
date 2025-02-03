@@ -8,6 +8,7 @@ target 'GitHubPocket' do
   pod 'SnapKit'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'Kingfisher'
 
   target 'GitHubPocketTests' do
     inherit! :search_paths

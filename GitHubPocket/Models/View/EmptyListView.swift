@@ -7,29 +7,6 @@
 import UIKit
 import SnapKit
 
-enum EmptyCause {
-    case emptyList
-    case apiError
-    
-    func message() -> String {
-        switch self {
-        case .emptyList:
-            return "Oh, it looks like there is no pull request list for this repository.How about looking for another one?"
-        case .apiError:
-            return "Oh, something went wrong. Try again later."
-        }
-    }
-    
-    func image() -> String {
-        switch self {
-        case .emptyList:
-            return "empty-list"
-        case .apiError:
-            return "empty-error"
-        }
-    }
-}
-
 class EmptyListView: UIView {
     var emptyCause: EmptyCause = .emptyList
     
@@ -80,6 +57,10 @@ class EmptyListView: UIView {
         message.text = cause.message()
         
         reloadInputViews()
+    }
+    
+    public func hide() {
+        self.removeFromSuperview()
     }
 }
 
