@@ -9,6 +9,8 @@ protocol HomePresentationLogic {
     func presentEmptyView()
     func presentError()
     func presentRepoList(content: [RepositoryItem])
+    func presentLoading()
+    func updateView()
 }
 
 class HomePresenter: HomePresentationLogic {
@@ -16,6 +18,10 @@ class HomePresenter: HomePresentationLogic {
 
     func setup(controller: HomeViewController) {
         self.controller = controller
+    }
+    
+    func presentLoading() {
+        controller?.setupLoading()
     }
     
     func presentEmptyView() {
@@ -27,6 +33,10 @@ class HomePresenter: HomePresentationLogic {
     }
     
     func presentRepoList(content: [RepositoryItem]) {
-        controller?.setupContent()
+        controller?.setupContent(with: content)
+    }
+    
+    func updateView() {
+        controller?.updateView()
     }
 }

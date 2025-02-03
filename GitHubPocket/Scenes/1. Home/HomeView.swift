@@ -50,14 +50,13 @@ class HomeView: UIView {
     required init?(coder: NSCoder) {
         return nil
     }
-
+    
     func setup(delegate: HomeViewDelegate) {
-        self.delegate = delegate 
+        self.delegate = delegate
     }
     
     func setup(content: [RepositoryItem]) {
-       homeViewModel.repoItems = content
-        contentTableView.reloadData()
+        homeViewModel.repoItems = content
     }
     
     func updateContent() {
@@ -65,16 +64,19 @@ class HomeView: UIView {
         loadingView.stop()
         emptyView.hide()
     }
+    
     func setupLoading() {
         loadingView.start()
     }
     
     func setupEmpty() {
+        emptyView.isHidden = false
         emptyView.setEmpty(cause: .emptyList)
         loadingView.stop()
     }
     
     func setupError() {
+        emptyView.isHidden = false
         emptyView.setEmpty(cause: .apiError)
         loadingView.stop()
     }
@@ -144,7 +146,7 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
         let footerView = FooterView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
         return footerView
     }
-
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 50
     }
