@@ -55,6 +55,7 @@ class LoadingView: UIView {
         spinner.stopAnimating()
         message.isHidden = true
         image.isHidden = true
+        self.removeFromSuperview()
     }
 }
 

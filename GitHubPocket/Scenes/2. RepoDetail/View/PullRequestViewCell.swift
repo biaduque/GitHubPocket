@@ -34,6 +34,7 @@ class PullRequestViewCell: UITableViewCell {
     
     lazy var userView: PullCreatorView = {
         let view = PullCreatorView()
+        view.setupView()
         return view
     }()
     
