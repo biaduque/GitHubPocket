@@ -57,7 +57,7 @@ class HomeViewControllerTests: XCTestCase {
                                                               owner: Owner(username: "", avatarUrl: ""),
                                                               url: "",
                                                               description: "",
-                                                              stars: 1,
+                                                              stars: 1, forks: 1,
                                                               language: "")])
         
         // Then

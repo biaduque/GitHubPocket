@@ -22,7 +22,7 @@ class HomeView: UIView {
         table.register(RepositoryViewCell.self, forCellReuseIdentifier: RepositoryViewCell.identifier)
         table.delegate = self
         table.dataSource = self
-        table.rowHeight = 100
+        table.rowHeight = 120
         table.backgroundColor = .clear
         return table
     }()
@@ -137,7 +137,9 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
         guard let repoItems = homeViewModel.repoItems else { return UITableViewCell() }
         if !repoItems.isEmpty {
             let item = repoItems[indexPath.row]
-            cell.setupContent(repoName: item.name, description: item.description ?? "")
+            cell.setupContent(repoName: item.name, description: item.description ?? "",
+                              forks: item.forks,
+                              stars: item.stars)
             cell.setupUserView(username: item.owner.username, fullname: item.fullname)
             cell.userView.setupUserImage(url: item.owner.avatarUrl)
             cell.setupView()

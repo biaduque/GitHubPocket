@@ -29,4 +29,12 @@ class DSLabel {
         label.font = UIFont.systemFont(ofSize: 10)
         return label
     }
+    
+    static var highlightedStyle: UILabel {
+        let label = UILabel()
+        label.textColor = UIColor.highlight
+        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        label.numberOfLines = 0
+        return label
+    }
 }
