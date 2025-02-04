@@ -57,6 +57,9 @@ class HomeView: UIView {
     }
     
     func setup(content: [RepositoryItem]) {
+        loadingView.stop()
+        emptyView.hide()
+        
         guard var contentList = homeViewModel.repoItems else {
             homeViewModel.repoItems = content
             return
@@ -69,8 +72,7 @@ class HomeView: UIView {
 extension HomeView: ViewModelStatusChanges {
     func updateContent() {
         contentTableView.reloadData()
-        loadingView.stop()
-        emptyView.hide()
+        reloadInputViews()
     }
     
     func setupLoading() {

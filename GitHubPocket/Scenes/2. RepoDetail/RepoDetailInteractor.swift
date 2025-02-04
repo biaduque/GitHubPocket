@@ -30,6 +30,7 @@ class RepoDetailInteractor: RepoDetailBusinessLogic {
                     
                     if pullListResponse.isEmpty {
                         presenter?.presentEmptyView()
+                        return 
                     }
                     
                     presenter?.presentPullsList(content: pullListResponse)

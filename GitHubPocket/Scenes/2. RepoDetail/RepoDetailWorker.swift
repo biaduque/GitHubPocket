@@ -14,8 +14,7 @@ protocol RepoDetailWorkingProtocol: AnyObject {
 }
 
 class RepoDetailWorker: RepoDetailWorkingProtocol {
-
-    let session: URLSession = URLSession.shared
+    var session: URLSession = URLSession.shared
     
     func getRepoList(with request: RepoDetailRequest) -> Observable<[RepoDetailList]> {
         guard let url = RepoDetailRequest.bindUrl(infos: request) else {

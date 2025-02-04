@@ -12,7 +12,7 @@ protocol RepoDetailRoutingProtocol: AnyObject {
 class RepoDetailRouter: RepoDetailRoutingProtocol {
     var coordinator: Coordinator?
     
-    func setup(coordinator: GitHubPocketCoordinator) {
+    func setup(coordinator: Coordinator) {
         self.coordinator = coordinator
     }
     
