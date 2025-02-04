@@ -50,6 +50,14 @@ Para rodar o projeto, as seguintes instruções devem ser seguidas:
 2. Abra o projeto do repositório via terminal
 3. Em seu terminal, rode o script ```sh rebuild_project.sh```
 
+  <details>
+  <summary> Clique para expandir... </summary>
+  
+  ![terminal](https://github.com/user-attachments/assets/91342342-b9b9-478f-89fb-e33fa5cb412f)
+ 
+  *Execução do comando no terminal*
+  </details>
+
 # <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" height="16" /> GitHubPocket
 
 In this project, an application was developed to query the [GitHub API](https://docs.github.com/en/rest/search?apiVersion=2022-11-28#search-repositories "GitHub API") and return the most popular Swift repositories, showing their list of pull requests. The project was developed with a focus on best programming practices and the fundamental concepts of native iOS applications.
@@ -87,7 +95,18 @@ The architecture used for the project is [Clean Swift](https://rubygarage.org/bl
 To run this project, the following instructions must be followed:
 1. Clone this repository
 2. Open the repository project via terminal
-3. In your terminal, run the ```sh rebuild_project.sh``` script
+3. In your terminal, run the ```sh rebuild_project.sh``` script.
+   
+  
+
+  <details>
+  <summary> Click to expand... </summary>
+  
+  ![terminal](https://github.com/user-attachments/assets/91342342-b9b9-478f-89fb-e33fa5cb412f)
+ 
+  *Command execution on terminal*
+  </details>
+
 
 # Issues 
 - [x] [#1 [FEATURE] Criar home do projeto](https://github.com/biaduque/GitHubPocket/issues/7)
