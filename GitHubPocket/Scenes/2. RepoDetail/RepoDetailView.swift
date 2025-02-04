@@ -21,7 +21,7 @@ class RepoDetailView: UIView {
         table.register(PullRequestViewCell.self, forCellReuseIdentifier: PullRequestViewCell.identifier)
         table.delegate = self
         table.dataSource = self
-        table.rowHeight = 120
+        table.rowHeight = 130
         return table
     }()
     
@@ -137,7 +137,8 @@ extension RepoDetailView: UITableViewDelegate, UITableViewDataSource {
         if !repoItems.isEmpty {
             let item = repoItems[indexPath.row]
             cell.setupContent(pullRequestName: item.title,
-                              description: item.body ?? "No description provided")
+                              description: item.body ?? "No description provided",
+                              date: item.created ?? "")
             cell.setupUserView(username: item.user.login,
                                fullname: item.user.login)
             cell.userView.setupUserImage(url: item.user.avatarUrl)

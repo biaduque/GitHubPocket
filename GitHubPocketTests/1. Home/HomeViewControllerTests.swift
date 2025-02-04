@@ -120,4 +120,17 @@ class HomeViewControllerTests: XCTestCase {
         // Then
         XCTAssertTrue(interactorSpy.fetchRepoListCalled)
     }
+    
+    func test_pullCreatorView() {
+        // Given
+        let view = PullCreatorView()
+        let cell = PullRequestViewCell(style: .default, reuseIdentifier: PullRequestViewCell.identifier)
+        
+        // When
+        view.name.text = "mock_name"
+        cell.userView = view
+        
+        // Then
+        XCTAssertEqual(cell.userView.name.text, "mock_name")
+    }
 }
