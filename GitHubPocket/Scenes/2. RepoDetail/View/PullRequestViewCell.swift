@@ -38,9 +38,16 @@ class PullRequestViewCell: UITableViewCell {
         return view
     }()
     
-    func setupContent(pullRequestName: String, description: String) {
+    lazy var dateLabel: UILabel = {
+        let desc = DSLabel.captionStyle
+        desc.text = "04/02/2025"
+        return desc
+    }()
+    
+    func setupContent(pullRequestName: String, description: String, date: String) {
         pullRequestNameLabel.text = pullRequestName
         formatDescription(with: description)
+        dateLabel.text = date.setupDate()
     }
     
     func setupUserView(username: String, fullname: String) {
@@ -67,6 +74,7 @@ extension PullRequestViewCell: BaseViewProtocol {
         stackView.addArrangedSubview(pullRequestNameLabel)
         stackView.addArrangedSubview(descriptionLabel)
         stackView.addArrangedSubview(userView)
+        stackView.addArrangedSubview(dateLabel)
     }
     
     func setupConstraints() {
@@ -88,6 +96,10 @@ extension PullRequestViewCell: BaseViewProtocol {
         
         userView.snp.makeConstraints { make in
             make.height.equalTo(80)
+        }
+        
+        dateLabel.snp.makeConstraints { make in
+            make.height.equalTo(20)
         }
     }
     

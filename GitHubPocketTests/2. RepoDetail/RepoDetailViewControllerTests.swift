@@ -114,16 +114,16 @@ class RepoDetailViewControllerTests: XCTestCase {
         XCTAssertTrue(interactorSpy.calledPullRequestDetail)
     }
     
-    func test_pullCreatorView() {
+    func test_repositoryViewCell() {
         // Given
-        let view = PullCreatorView()
-        let cell = PullRequestViewCell(style: .default, reuseIdentifier: PullRequestViewCell.identifier)
+        let view = RepoNumbersView()
+        let stats = StatsStackView()
+        let cell = RepositoryViewCell(style: .default, reuseIdentifier: RepositoryViewCell.identifier)
         
         // When
-        view.name.text = "mock_name"
-        cell.userView = view
-        
+        view.forksIcon.valueLabel.text = "2"
+        stats.valueLabel = view.forksIcon.valueLabel
         // Then
-        XCTAssertEqual(cell.userView.name.text, "mock_name")
+        XCTAssertEqual(stats.valueLabel.text, "2")
     }
 }
