@@ -95,3 +95,6 @@ To run this project, the following instructions must be followed:
 - [x] [#5 [DEV] Cobertura de testes unitários do projeto](https://github.com/biaduque/GitHubPocket/issues/12)
 
 - [x] [#6 [FEATURE] Criar componente para exibir quantida de FORKS e ESTRELAS de cada repositório](https://github.com/biaduque/GitHubPocket/issues/14)
+
+- [x] [[DESIGN] Paleta de cores](https://github.com/biaduque/GitHubPocket/issues/15)
+
