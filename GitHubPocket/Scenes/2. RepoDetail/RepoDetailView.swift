@@ -55,7 +55,10 @@ class RepoDetailView: UIView {
     }
     
     func setup(content: [RepoDetailList]) {
-        repoDetailModel.pullRequestList = content       
+        repoDetailModel.pullRequestList = content
+        
+        emptyView.hide()
+        loadingView.stop()
     }
     
     @objc func didSelectBack() {
@@ -66,8 +69,7 @@ class RepoDetailView: UIView {
 extension RepoDetailView: ViewModelStatusChanges {
     func updateContent() {
         contentTableView.reloadData()
-        emptyView.hide()
-        loadingView.stop()
+        reloadInputViews()
     }
     
     func setupLoading() {
@@ -77,13 +79,13 @@ extension RepoDetailView: ViewModelStatusChanges {
     func setupEmpty() {
         emptyView.isHidden = false
         emptyView.setEmpty(cause: .emptyList)
-        self.loadingView.stop()
+        loadingView.stop()
     }
     
     func setupError() {
         emptyView.isHidden = false
         emptyView.setEmpty(cause: .apiError)
-        self.loadingView.stop()
+        loadingView.stop()
     }
 }
 

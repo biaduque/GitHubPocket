@@ -37,6 +37,7 @@ class HomeInteractor: HomeBusinessLogic {
                     
                     if repoListResponse.items.isEmpty {
                         presenter?.presentEmptyView()
+                        return 
                     }
                     presenter?.presentRepoList(content: repoListResponse.items)
                     

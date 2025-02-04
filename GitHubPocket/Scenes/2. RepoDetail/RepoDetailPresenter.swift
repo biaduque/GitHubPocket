@@ -21,6 +21,10 @@ class RepoDetailPresenter: RepoDetailPresentationLogic {
         self.controller = controller
     }
     
+    func presentPullsList(content: [RepoDetailList]) {
+        controller?.presentPullsList(content: content)
+    }
+    
     func presentDetailModal(url: String) {
         let modalController = PullRequestDetailFactory.makeController(with: url)
         controller?.present(modalController, animated: true)
@@ -32,10 +36,6 @@ class RepoDetailPresenter: RepoDetailPresentationLogic {
     
     func presentError() {
         controller?.setupError()
-    }
-    
-    func presentPullsList(content: [RepoDetailList]) {
-        controller?.presentPullsList(content: content)
     }
     
     func presentLoading() {

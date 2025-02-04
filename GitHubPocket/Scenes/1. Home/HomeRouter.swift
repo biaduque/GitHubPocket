@@ -12,7 +12,7 @@ protocol HomeRoutingProtocol: AnyObject {
 class HomeRouter: HomeRoutingProtocol {
     var coordinator: Coordinator?
     
-    func setup(coordinator: GitHubPocketCoordinator) {
+    func setup(coordinator: Coordinator) {
         self.coordinator = coordinator
     }
     
