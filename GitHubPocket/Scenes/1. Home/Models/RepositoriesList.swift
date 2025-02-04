@@ -27,6 +27,7 @@ struct RepositoryItem: Decodable {
     let url: String
     let description: String?
     let stars: Int
+    let forks: Int
     let language: String?
     
     enum CodingKeys: String, CodingKey {
@@ -38,6 +39,7 @@ struct RepositoryItem: Decodable {
         case description
         case stars = "stargazers_count"
         case language
+        case forks = "forks_count"
     }
 }
 

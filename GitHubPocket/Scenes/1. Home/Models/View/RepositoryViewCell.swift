@@ -28,9 +28,17 @@ class RepositoryViewCell: UITableViewCell {
         return view
     }()
     
-    func setupContent(repoName: String, description: String) {
+    lazy var repoNumbers: RepoNumbersView = {
+        let view = RepoNumbersView()
+        view.setupView()
+        return view
+    }()
+    
+    func setupContent(repoName: String, description: String, forks: Int, stars: Int) {
         repoNameLabel.text = repoName
         descriptionLabel.text = description
+        repoNumbers.forksIcon.valueLabel.text = String(forks)
+        repoNumbers.starIcon.valueLabel.text = String(stars)
     }
     
     func setupUserView(username: String, fullname: String) {
@@ -49,6 +57,7 @@ extension RepositoryViewCell: BaseViewProtocol {
     func setupHierarchy() {
         addSubview(repoNameLabel)
         addSubview(descriptionLabel)
+        addSubview(repoNumbers)
         addSubview(userView)
     }
     
@@ -60,12 +69,20 @@ extension RepositoryViewCell: BaseViewProtocol {
         descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(repoNameLabel.snp.bottom).offset(4)
             make.leading.equalTo(repoNameLabel)
+            make.height.equalTo(30)
             make.trailing.equalTo(userView.snp.leading)
+        }
+        
+        repoNumbers.snp.makeConstraints { make in
+            make.top.equalTo(descriptionLabel.snp.bottom).offset(4)
+            make.leading.equalTo(repoNameLabel)
+            make.trailing.equalTo(userView.snp.leading)
+            make.bottom.equalToSuperview()
         }
         
         userView.snp.makeConstraints { make in
             make.width.equalTo(100)
-            make.height.top.equalToSuperview().inset(12)
+            make.top.equalToSuperview().inset(12)
             make.trailing.equalToSuperview().inset(8)
         }
     }
