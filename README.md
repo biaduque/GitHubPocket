@@ -1,3 +1,11 @@
+# Overview
+![Frame 185](https://github.com/user-attachments/assets/e26ccf72-e65b-4485-a938-52f59ca9f827)
+# Dark Mode!
+![Frame 186](https://github.com/user-attachments/assets/5b26a135-b6bd-4279-902f-6534afce6ae9)
+# Different Scenarios!
+![Frame 187](https://github.com/user-attachments/assets/58961e4a-cc69-4280-9dd6-46c8aaa7f508)
+
+
 # <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="BR" height="20"/> GitHubPocket
 
 Neste projeto foi desenvolvido um aplicativo para consultar a [API do GitHub](https://docs.github.com/en/rest/search?apiVersion=2022-11-28#search-repositories "API do GitHub") e retornar os repositórios mais populares de Swift, mostrando sua lista de pull requests. O projeto foi desenvolvido visando as boas práticas de programação e os conceitos fundamentais de aplicativos nativos de iOS.
