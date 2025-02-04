@@ -13,8 +13,8 @@ extension String {
         guard let data = self.data(using: .utf8) else { return nil }
         
         if let formattedString = try? NSMutableAttributedString(data: data,
-                                                         options:  [.documentType: NSAttributedString.DocumentType.html],
-                                                         documentAttributes: nil){
+                                                                options:  [.documentType: NSAttributedString.DocumentType.html],
+                                                                documentAttributes: nil){
             formattedString.addAttributes(
                 [.font: UIFont.systemFont(ofSize: 12)],
                 range: NSRange(location: 0, length: formattedString.length)
@@ -22,5 +22,18 @@ extension String {
             return formattedString
         }
         return nil
+    }
+    
+    func setupDate() -> String {
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [.withInternetDateTime]
+        
+        guard let date = isoFormatter.date(from: self) else { return self }
+        
+        let displayFormatter = DateFormatter()
+        displayFormatter.dateStyle = .long
+        displayFormatter.locale = Locale(identifier: "pt_BR")
+        
+        return displayFormatter.string(from: date)
     }
 }

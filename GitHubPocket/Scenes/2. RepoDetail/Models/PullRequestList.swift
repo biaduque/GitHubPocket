@@ -10,12 +10,14 @@ struct RepoDetailList: Decodable {
     var body: String?
     var user: User
     var htmlUrl: String?
+    var created: String?
     
     enum CodingKeys: String, CodingKey {
         case title
         case body
         case user
         case htmlUrl = "html_url"
+        case created = "created_at"
     }
 }
 
