@@ -84,9 +84,14 @@ To run this project, the following instructions must be followed:
 3. In your terminal, run the ```sh rebuild_project.sh``` script
 
 # Issues 
-[#1 [FEATURE] Criar home do projeto](https://github.com/biaduque/GitHubPocket/issues/7)
-[#2 [FEATURE] Criar tela de detalhe](https://github.com/biaduque/GitHubPocket/issues/9)
-[#3 [FEATURE] Criar tela de visualização do pull request](https://github.com/biaduque/GitHubPocket/issues/10)
-[#4 [FEATURE] Carregar foto de perfil dos usuários + paginação ](https://github.com/biaduque/GitHubPocket/issues/11)
-[#5 [DEV] Cobertura de testes unitários do projeto](https://github.com/biaduque/GitHubPocket/issues/12)
-[#6 [FEATURE] Criar componente para exibir quantida de FORKS e ESTRELAS de cada repositório](https://github.com/biaduque/GitHubPocket/issues/14)
+- [x] [#1 [FEATURE] Criar home do projeto](https://github.com/biaduque/GitHubPocket/issues/7)
+
+- [x] [#2 [FEATURE] Criar tela de detalhe](https://github.com/biaduque/GitHubPocket/issues/9)
+
+- [x] [#3 [FEATURE] Criar tela de visualização do pull request](https://github.com/biaduque/GitHubPocket/issues/10)
+
+- [x] [#4 [FEATURE] Carregar foto de perfil dos usuários + paginação ](https://github.com/biaduque/GitHubPocket/issues/11)
+
+- [x] [#5 [DEV] Cobertura de testes unitários do projeto](https://github.com/biaduque/GitHubPocket/issues/12)
+
+- [x] [#6 [FEATURE] Criar componente para exibir quantida de FORKS e ESTRELAS de cada repositório](https://github.com/biaduque/GitHubPocket/issues/14)
