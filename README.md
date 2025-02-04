@@ -36,7 +36,9 @@ A arquitetura utilizada para o projeto é a [Clean Swift](https://rubygarage.org
 ## Escolhas feitas
 ### Coordinator Pattern 
 * Foi utilizado coordinator pattern para a organização e orquestração da navegação do app em um único arquivo. Facilitando identificar cada ponto de entrada em determinada jornada
-
+### Documentação
+* A maior parte da documentação foi realizada através das issues do Git
+  
 ### Cocoapods
 * Pods foram utilizados no projeto para otimizar o desenvolvimento, já que possibilitam a economia de linhas de código, arquivos e até mesmo oferecem ao app ganho de performance e orquestração de threads (como RXSwift por exemplo)
 
@@ -76,6 +78,8 @@ The architecture used for the project is [Clean Swift](https://rubygarage.org/bl
 ## Choices made
 ### Coordinator Pattern 
 * Coordinator pattern was used to organize and orchestrate the app's navigation in a single file. Making it easier to identify each entry point in a given journey
+### Documentation
+* Most of the documentation was done through Git issues
 
 ## Steps to run the project
 To run this project, the following instructions must be followed:
