@@ -35,19 +35,19 @@ class RepoDetailWorkerTests: XCTestCase {
         [
             {
                 "id": 1,
-                "name": "Repo Test",
-                "full_name": "user/repo-test",
+                "name": "Repo Mock",
+                "full_name": "mocktest/repo-mock",
                 "owner": {
                     "login": "testuser",
                     "avatar_url": "https://example.com/avatar.png"
                 },
-                "html_url": "https://github.com/testuser/repo-test"
+                "html_url": "https://github.com/mocktest/repo-mock"
             }
         ]
         """
         mockSession.data = jsonString.data(using: .utf8)
         
-        let request = RepoDetailRequest(creatorName: "testuser", repoName: "repo-test")
+        let request = RepoDetailRequest(creatorName: "mocktest", repoName: "repo-mock")
 
         // When
         let result = try? sut.getRepoList(with: request)
