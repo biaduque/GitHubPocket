@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "08FA8D7B-05AA-4E61-93E7-E11DBC9730AB",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:GitHubPocket.xcodeproj",
+      "identifier" : "139D0CB82D4C39AF003F1D0D",
+      "name" : "GitHubPocket"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:GitHubPocket.xcodeproj",
+        "identifier" : "139D0CCE2D4C39B2003F1D0D",
+        "name" : "GitHubPocketTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:GitHubPocket.xcodeproj",
+        "identifier" : "139D0CD82D4C39B2003F1D0D",
+        "name" : "GitHubPocketUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1375820A2D52ED8D0008CE22 /* GitHubPocket.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 137582092D52ED8D0008CE22 /* GitHubPocket.xctestplan */; };
+		1375820B2D52ED9D0008CE22 /* GitHubPocket.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 137582092D52ED8D0008CE22 /* GitHubPocket.xctestplan */; };
+		1375820C2D52ED9D0008CE22 /* GitHubPocket.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 137582092D52ED8D0008CE22 /* GitHubPocket.xctestplan */; };
 		2E56D57C15ED4A8D5767E028 /* Pods_GitHubPocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 721675EA7C6F60BCE401C6C9 /* Pods_GitHubPocket.framework */; };
 		37967FCE784E6EB9B4065351 /* Pods_GitHubPocket_GitHubPocketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3898C2413CD2C1EE45E0C021 /* Pods_GitHubPocket_GitHubPocketUITests.framework */; };
 		DC318D9E5F42CBA97A14ED0C /* Pods_GitHubPocketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DDD78228A13375AD471C212 /* Pods_GitHubPocketTests.framework */; };
@@ -30,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		137582092D52ED8D0008CE22 /* GitHubPocket.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = GitHubPocket.xctestplan; sourceTree = "<group>"; };
 		139D0CB92D4C39AF003F1D0D /* GitHubPocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubPocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		139D0CCF2D4C39B2003F1D0D /* GitHubPocketTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubPocketTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		139D0CD92D4C39B2003F1D0D /* GitHubPocketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubPocketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +110,7 @@
 		139D0CB02D4C39AF003F1D0D = {
 			isa = PBXGroup;
 			children = (
+				137582092D52ED8D0008CE22 /* GitHubPocket.xctestplan */,
 				139D0CBB2D4C39AF003F1D0D /* GitHubPocket */,
 				139D0CD22D4C39B2003F1D0D /* GitHubPocketTests */,
 				139D0CDC2D4C39B2003F1D0D /* GitHubPocketUITests */,
@@ -267,6 +272,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1375820A2D52ED8D0008CE22 /* GitHubPocket.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1375820B2D52ED9D0008CE22 /* GitHubPocket.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1375820C2D52ED9D0008CE22 /* GitHubPocket.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
