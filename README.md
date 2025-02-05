@@ -53,7 +53,7 @@ Para rodar o projeto, as seguintes instruções devem ser seguidas:
   <details>
   <summary> Clique para expandir... </summary>
   
-  ![terminal](https://github.com/user-attachments/assets/91342342-b9b9-478f-89fb-e33fa5cb412f)
+  <img width="682" alt="rebuild_project" src="https://github.com/user-attachments/assets/04bfd8e3-87d9-40bd-9c34-4b2827c23cc4" />
  
   *Execução do comando no terminal*
   </details>
@@ -102,7 +102,7 @@ To run this project, the following instructions must be followed:
   <details>
   <summary> Click to expand... </summary>
   
-  ![terminal](https://github.com/user-attachments/assets/91342342-b9b9-478f-89fb-e33fa5cb412f)
+   <img width="682" alt="rebuild_project" src="https://github.com/user-attachments/assets/04bfd8e3-87d9-40bd-9c34-4b2827c23cc4" />
  
   *Command execution on terminal*
   </details>
