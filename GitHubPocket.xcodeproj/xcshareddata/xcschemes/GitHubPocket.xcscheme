@@ -30,7 +30,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:../GitHubPocket.xctestplan"
+            reference = "container:GitHubPocket.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>
