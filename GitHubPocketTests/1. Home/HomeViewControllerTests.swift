@@ -124,6 +124,7 @@ class HomeViewControllerTests: XCTestCase {
     func test_pullCreatorView() {
         // Given
         let view = PullCreatorView()
+        let userView = UserView()
         let cell = PullRequestViewCell(style: .default, reuseIdentifier: PullRequestViewCell.identifier)
         
         // When
