@@ -4,6 +4,8 @@ DerivedData/
 *.xcscmblueprint
 !default.xcworkspace
 *.xcuserstate
+**/UserInterfaceState.xcuserstate
+
 
 *.xcodeproj/*.xcuserdatad/
 *.xcodeproj/project.xcworkspace/
