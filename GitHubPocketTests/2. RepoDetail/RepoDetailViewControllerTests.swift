@@ -121,6 +121,7 @@ class RepoDetailViewControllerTests: XCTestCase {
         let cell = RepositoryViewCell(style: .default, reuseIdentifier: RepositoryViewCell.identifier)
         
         // When
+        cell.setupView()
         view.forksIcon.valueLabel.text = "2"
         stats.valueLabel = view.forksIcon.valueLabel
         // Then
