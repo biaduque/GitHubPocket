@@ -1,5 +1,5 @@
 # Overview
-![Frame 185](https://github.com/user-attachments/assets/3896cd6f-0e68-441e-8825-f5dbc120a7e7)
+![Frame 185](https://github.com/user-attachments/assets/00330549-f068-45ee-8ea7-ef7376ad9c07)
 
 # Dark Mode!
 ![Frame 186](https://github.com/user-attachments/assets/398360d2-cc8f-4058-a048-75f044a0f8c7)
@@ -14,7 +14,7 @@ Neste projeto foi desenvolvido um aplicativo para consultar a [API do GitHub](ht
 
 ## Solução adotada
 ### Organização de jornadas
-A solução adota envolve um aplicativo Swift desenvolvido através de UIKit e que possui 3 cenas principais, representando a navegação do usuário pelo App: 
+A solução adotada envolve um aplicativo Swift desenvolvido através de UIKit e que possui 3 cenas principais, representando a navegação do usuário pelo App: 
 * Home: tela principal do aplicativo, onde é mostrada a lista de repositórios do GitHub dada requisição na url: ```https://api.github.com/search/repositories?q=language:Swift&sort=stars&page={page}```
 * RepoDetail: tela apresentada ao usuário como um detalhe do repositório selecionado. O detalhe representa a lista de pull requests abertos para o repositório selecionado.
 * PullRequestDetail: tela de detalhe do pull request, apresentada como modal e que carrega uma webview dado clique em determinado PullRequest da lista 
@@ -98,7 +98,6 @@ To run this project, the following instructions must be followed:
 3. In your terminal, run the ```sh rebuild_project.sh``` script.
    
   
-
   <details>
   <summary> Click to expand... </summary>
   
@@ -122,4 +121,6 @@ To run this project, the following instructions must be followed:
 - [x] [#6 [FEATURE] Criar componente para exibir quantida de FORKS e ESTRELAS de cada repositório](https://github.com/biaduque/GitHubPocket/issues/14)
 
 - [x] [[DESIGN] Paleta de cores](https://github.com/biaduque/GitHubPocket/issues/15)
+    
+- [x] [[DESIGN] App icon](https://github.com/biaduque/GitHubPocket/issues/19)
 
