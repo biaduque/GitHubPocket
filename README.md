@@ -8,7 +8,7 @@
 ![Frame 187](https://github.com/user-attachments/assets/58961e4a-cc69-4280-9dd6-46c8aaa7f508)
 
 
-# <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="BR" height="20"/> GitHubPocket
+# 🇧🇷 GitHubPocket
 
 Neste projeto foi desenvolvido um aplicativo para consultar a [API do GitHub](https://docs.github.com/en/rest/search?apiVersion=2022-11-28#search-repositories "API do GitHub") e retornar os repositórios mais populares de Swift, mostrando sua lista de pull requests. O projeto foi desenvolvido visando as boas práticas de programação e os conceitos fundamentais de aplicativos nativos de iOS.
 
@@ -58,7 +58,7 @@ Para rodar o projeto, as seguintes instruções devem ser seguidas:
   *Execução do comando no terminal*
   </details>
 
-# <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" height="16" /> GitHubPocket
+# 🇺🇸 GitHubPocket
 
 In this project, an application was developed to query the [GitHub API](https://docs.github.com/en/rest/search?apiVersion=2022-11-28#search-repositories "GitHub API") and return the most popular Swift repositories, showing their list of pull requests. The project was developed with a focus on best programming practices and the fundamental concepts of native iOS applications.
 
